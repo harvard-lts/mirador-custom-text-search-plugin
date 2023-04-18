@@ -1,6 +1,6 @@
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
-import { CustomSearchButton } from "src/plugins";
+import { CustomSearchButton } from "src";
 
 const MiradorCustomSearchButton = CustomSearchButton.component;
 
