@@ -1,13 +1,37 @@
 import React, { Component } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 
-// TODO: Add API call and conditional rendering
-// TODO: Add tests
 class CustomSearchButton extends Component {
+  constructor(props) {
+    super(props);
+    const { manifestUrl } = this.props;
+
+    this.state = {
+      hasOcr: false,
+      manifestId: manifestUrl.split("/").pop().split(":").pop(),
+    };
+  }
+
+  // TODO: update the API request when the proxy API is ready
+  async componentDidMount() {
+    const { manifestId } = this.state;
+
+    try {
+      const res = await fetch(
+        `https://pds.lib.harvard.edu/pds/hasocr/${manifestId}`
+      );
+      const data = await res.json();
+      this.setState({ hasOcr: data.hasOcr });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   // WindowSideBarButtons expects just icon and value
   // See: https://github.com/ProjectMirador/mirador/blob/v3.3.0/src/components/WindowSideBarButtons.js
   render() {
-    return <SearchIcon />;
+    const { hasOcr } = this.state;
+    return hasOcr ? <SearchIcon /> : null;
   }
 }
 
