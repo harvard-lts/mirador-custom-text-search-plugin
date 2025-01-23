@@ -4,7 +4,8 @@ import SearchIcon from "@material-ui/icons/Search";
 class CustomSearchButton extends Component {
   constructor(props) {
     super(props);
-    const { manifestUrl } = this.props;
+    //const { manifestUrl } = this.props;
+    const manifestUrl = "https://iiif.lib.harvard.edu/manifests/drs:4997399"
 
     this.state = {
       hasOcr: false,
@@ -19,6 +20,7 @@ class CustomSearchButton extends Component {
     try {
       const res = await fetch(
         `https://pds.lib.harvard.edu/pds/hasocr/${manifestId}`
+        //`https://pds.lib.harvard.edu/pds/hasocr/4997399`
       );
       const data = await res.json();
       this.setState({ hasOcr: data.hasOcr });

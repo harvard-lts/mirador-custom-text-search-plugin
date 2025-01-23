@@ -1,5 +1,8 @@
+/** @type {import('jest').Config} */
 module.exports = {
   testEnvironment: "jsdom",
+  transformIgnorePatterns: ["node_modules/(?!mirador)/", "node_modules/pdiiif"],
+  setupFilesAfterEnv: ["@testing-library/jest-dom", "./setupTests"],
   //   collectCoverage: true,
   //   coverageDirectory: "coverage",
   //   verbose: true,
